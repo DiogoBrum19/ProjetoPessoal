@@ -41,21 +41,18 @@
             const invalidLoginMessage = document.getElementById('invalid-login-message');
 
             loginForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Impede o envio do formulário padrão
+                event.preventDefault(); 
 
-                // Lógica de autenticação aqui (verificação de nome de usuário e senha, etc.)
                 const username = document.getElementById('username').value;
                 const password = document.getElementById('password').value;
 
-                // Exemplo de lógica de autenticação (substitua pelo seu próprio método de verificação)
                 const existingLogins = JSON.parse(localStorage.getItem('logins')) || [];
                 const authenticated = existingLogins.some(login => login.username === username && login.password === password);
 
                 if (authenticated) {
-                    saveLoginData(username); // Salva os dados de login
-                    window.location.href = 'Camisas.html'; // Redireciona para a página principal após o login
+                    saveLoginData(username); 
+                    window.location.href = 'Camisas.html';
                 } else {
-                    // Exibe a mensagem de login inválido
                     invalidLoginMessage.textContent = 'Login inválido';
                 }
             });
