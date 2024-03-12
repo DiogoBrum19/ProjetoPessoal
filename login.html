@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username">
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password">
+            <button type="submit">Entrar</button>
+        </form>
+        <a href="create_login.html">Criar Login</a>
+        <div id="invalid-login-message" class="invalid-login-message"></div>
+    </div>
+
+    <script>
+        function saveLoginData(username) {
+            localStorage.setItem('username', username);
+        }
+
+        function getLoginData() {
+            return localStorage.getItem('username');
+        }
+
+        function createLogin(username, password) {
+            const existingLogins = JSON.parse(localStorage.getItem('logins')) || [];
+            const newLogin = { username, password };
+            existingLogins.push(newLogin);
+            localStorage.setItem('logins', JSON.stringify(existingLogins));
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('login-form');
+            const invalidLoginMessage = document.getElementById('invalid-login-message');
+
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Impede o envio do formulário padrão
+
+                // Lógica de autenticação aqui (verificação de nome de usuário e senha, etc.)
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                // Exemplo de lógica de autenticação (substitua pelo seu próprio método de verificação)
+                const existingLogins = JSON.parse(localStorage.getItem('logins')) || [];
+                const authenticated = existingLogins.some(login => login.username === username && login.password === password);
+
+                if (authenticated) {
+                    saveLoginData(username); // Salva os dados de login
+                    window.location.href = 'Camisas.html'; // Redireciona para a página principal após o login
+                } else {
+                    // Exibe a mensagem de login inválido
+                    invalidLoginMessage.textContent = 'Login inválido';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

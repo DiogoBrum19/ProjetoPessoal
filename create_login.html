@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Criar Login</h2>
+        <form id="create-login-form">
+            <label for="new-username">Usuário:</label>
+            <input type="text" id="new-username" name="new-username">
+            <label for="new-password">Senha:</label>
+            <input type="password" id="new-password" name="new-password">
+            <button type="submit">Criar</button>
+        </form>
+        <div id="create-login-message" class="create-login-message"></div>
+        <a href="login.html" id="login-link" class="login-link">Voltar para Login</a>
+    </div>
+
+    <script>
+        // Função para verificar se o usuário já existe
+        function checkExistingUser(username) {
+            const existingLogins = JSON.parse(localStorage.getItem('logins')) || [];
+            return existingLogins.some(login => login.username === username);
+        }
+
+        // Função para criar login
+        function createLogin(username, password) {
+            // Verifica se o usuário já existe
+            if (checkExistingUser(username)) {
+                return false; // Retorna falso se o usuário já existir
+            }
+
+            const existingLogins = JSON.parse(localStorage.getItem('logins')) || [];
+            const newLogin = { username, password };
+            existingLogins.push(newLogin);
+            localStorage.setItem('logins', JSON.stringify(existingLogins));
+            return true; // Retorna verdadeiro se o login for criado com sucesso
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const createLoginForm = document.getElementById('create-login-form');
+            const createLoginMessage = document.getElementById('create-login-message');
+
+            createLoginForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Impede o envio do formulário padrão
+
+                // Obtém os valores inseridos pelo usuário
+                const newUsername = document.getElementById('new-username').value;
+                const newPassword = document.getElementById('new-password').value;
+
+                // Verifica se o usuário já existe
+                if (checkExistingUser(newUsername)) {
+                    // Exibe a mensagem de erro
+                    createLoginMessage.textContent = 'Usuário já existe. Escolha outro nome de usuário.';
+                    createLoginMessage.style.color = 'red';
+                    return; // Interrompe a execução da função se o usuário já existir
+                }
+
+                // Cria o login com os dados inseridos
+                const loginCreated = createLogin(newUsername, newPassword);
+
+                if (loginCreated) {
+                    // Exibe a mensagem de sucesso
+                    createLoginMessage.textContent = 'Login criado com sucesso!';
+                    createLoginMessage.style.color = 'green';
+
+                    // Limpa os campos do formulário
+                    createLoginForm.reset();
+                } else {
+                    // Exibe a mensagem de erro
+                    createLoginMessage.textContent = 'Erro ao criar o login. Por favor, tente novamente mais tarde.';
+                    createLoginMessage.style.color = 'red';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

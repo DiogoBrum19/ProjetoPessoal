@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    position: relative; /* Adicionado para manter consistência */
+}
+
+/* Estilo para o botão de login */
+.login-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    right: 20px; /* Posiciona à direita */
+}
+
+/* Estilo para a barra de pesquisa */
+#searchbar {
+    width: 80%; /* Ajustado para 80% da largura da viewport */
+    margin: 10px auto; /* Centralizado horizontalmente e um pouco abaixo do h1 */
+    display: block; /* Garantindo que a barra de pesquisa ocupe toda a largura disponível */
+    padding: 10px; /* Adicionando algum preenchimento para tornar a entrada mais atraente */
+    font-size: 16px; /* Definindo o tamanho da fonte */
+    border: 1px solid #ccc; /* Adicionado para estilização da borda */
+    border-radius: 5px; /* Adicionado para estilização dos cantos */
+    outline: none; /* Removendo o contorno ao focar */
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed; /* Alterado para fixed */
+    bottom: 0;
+}
+
+#main-content {
+    display: flex; /* Exibir os anúncios em linha */
+    flex-wrap: wrap; /* Permitir que os anúncios quebrem para a próxima linha */
+    justify-content: space-around; /* Distribuir os anúncios uniformemente */
+    padding: 20px; /* Adicionar algum espaço interno */
+}
+
+.anuncio {
+    flex: 0 0 calc(25% - 20px); /* Definir a largura de cada anúncio com espaço interno */
+    margin-bottom: 10px; /* Espaçamento entre os anúncios */
+    background-color: #f9f9f9; /* Cor de fundo para diferenciar os anúncios */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 20px; /* Espaço interno */
+    box-sizing: border-box; /* Considerar o preenchimento e a borda no cálculo da largura */
+    text-align: left; /* Alinhar o texto à esquerda */
+}
+
+
+.anuncio img {
+    max-width: 100%; /* Defina a largura máxima como 100% do contêiner pai */
+    height: auto; /* Mantém a proporção de aspecto da imagem */
+    display: block; /* Impede que as imagens sejam exibidas em linha com o texto */
+    margin-bottom: 10px; /* Adicionar algum espaço entre a imagem e o texto */
+}
