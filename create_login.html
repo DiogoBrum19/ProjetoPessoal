@@ -21,24 +21,21 @@
     </div>
 
     <script>
-        // Função para verificar se o usuário já existe
         function checkExistingUser(username) {
             const existingLogins = JSON.parse(localStorage.getItem('logins')) || [];
             return existingLogins.some(login => login.username === username);
         }
 
-        // Função para criar login
         function createLogin(username, password) {
-            // Verifica se o usuário já existe
             if (checkExistingUser(username)) {
-                return false; // Retorna falso se o usuário já existir
+                return false; 
             }
 
             const existingLogins = JSON.parse(localStorage.getItem('logins')) || [];
             const newLogin = { username, password };
             existingLogins.push(newLogin);
             localStorage.setItem('logins', JSON.stringify(existingLogins));
-            return true; // Retorna verdadeiro se o login for criado com sucesso
+            return true;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -46,32 +43,25 @@
             const createLoginMessage = document.getElementById('create-login-message');
 
             createLoginForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Impede o envio do formulário padrão
+                event.preventDefault(); 
 
-                // Obtém os valores inseridos pelo usuário
                 const newUsername = document.getElementById('new-username').value;
                 const newPassword = document.getElementById('new-password').value;
 
-                // Verifica se o usuário já existe
                 if (checkExistingUser(newUsername)) {
-                    // Exibe a mensagem de erro
                     createLoginMessage.textContent = 'Usuário já existe. Escolha outro nome de usuário.';
                     createLoginMessage.style.color = 'red';
-                    return; // Interrompe a execução da função se o usuário já existir
+                    return; 
                 }
 
-                // Cria o login com os dados inseridos
                 const loginCreated = createLogin(newUsername, newPassword);
 
                 if (loginCreated) {
-                    // Exibe a mensagem de sucesso
                     createLoginMessage.textContent = 'Login criado com sucesso!';
                     createLoginMessage.style.color = 'green';
 
-                    // Limpa os campos do formulário
                     createLoginForm.reset();
                 } else {
-                    // Exibe a mensagem de erro
                     createLoginMessage.textContent = 'Erro ao criar o login. Por favor, tente novamente mais tarde.';
                     createLoginMessage.style.color = 'red';
                 }
