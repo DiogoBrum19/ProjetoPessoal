@@ -12,17 +12,15 @@ function search_tshirts() {
         anuncio.style.display = shouldShow ? 'block' : 'none';
     });
 }
-// Exemplo de dados de anúncios (você pode substituir por seus próprios dados)
 const anuncios = [
     { titulo: "Camisa Barcelona 23/24", descricao: "Nova, tamanho M", preco: "R$ 150,00", imagem: "CamisasImagens/barcelona.jpg" },
     { titulo: "Camisa Real Madrid 22/23", descricao: "Usada, tamanho P", preco: "R$ 100,00", imagem: "CamisasImagens/real_madrid.jpg" },
     { titulo: "Camisa Seleção Brasileira 2022", descricao: "Nova, tamanho G", preco: "R$ 200,00", imagem: "CamisasImagens/selecao_brasileira.jpg" }
 ];
 
-// Função para exibir os anúncios na página
 function exibirAnuncios() {
     const mainContent = document.getElementById('main-content');
-    mainContent.innerHTML = ''; // Limpa o conteúdo atual
+    mainContent.innerHTML = '';
 
     anuncios.forEach(anuncio => {
         const divAnuncio = document.createElement('div');
@@ -37,9 +35,9 @@ function exibirAnuncios() {
         const imagemDiv = document.createElement('div');
         imagemDiv.classList.add('imagem');
 
-        const imagem = document.createElement('img'); // Criando o elemento de imagem
-        imagem.src = anuncio.imagem; // Definindo a origem da imagem
-        imagem.alt = anuncio.titulo; // Definindo o texto alternativo da imagem
+        const imagem = document.createElement('img'); 
+        imagem.src = anuncio.imagem; 
+        imagem.alt = anuncio.titulo;
         imagemDiv.appendChild(imagem);
 
         const detalhes = document.createElement('div');
@@ -66,15 +64,12 @@ function exibirAnuncios() {
 
 
 
-// Restante do seu código JavaScript...
 
 
-// Função para redirecionar para a página de login
 function redirectToLogin() {
-    window.location.href = 'login.html'; // Substitua 'login.html' pelo nome do arquivo de login
+    window.location.href = 'login.html'; 
 }
 
-// Adiciona o evento de clique ao botão de login
 document.addEventListener('DOMContentLoaded', function() {
     const loginBtn = document.createElement('button');
     loginBtn.textContent = 'Login';
@@ -84,7 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('header');
     header.appendChild(loginBtn);
 
-    // Posiciona o botão de login à direita do cabeçalho
     function positionLoginButton() {
         const headerWidth = header.offsetWidth;
         const loginBtnWidth = loginBtn.offsetWidth;
@@ -93,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
         loginBtn.style.right = `${rightPosition}px`;
     }
 
-    // Chama a função de posicionamento quando a página é carregada e quando a janela é redimensionada
     window.addEventListener('load', function() {
         exibirAnuncios();
         positionLoginButton();
